@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#f6c400" />
+  <title>Vial a la Mano</title>
+  <style>
+    :root{--y:#f6c400;--b:#0b57d0;--r:#d71920;--ink:#17202a;--muted:#6b7280;--card:#fff;--bg:#f7f8fb}
+    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+    .flag{height:12px;background:linear-gradient(#f6c400 0 33.3%,#0b57d0 33.3% 66.6%,#d71920 66.6%)}
+    header{background:#fff;padding:18px 18px 14px;position:sticky;top:0;z-index:5;border-bottom:1px solid #e8e8e8}
+    .brand{display:flex;align-items:center;gap:12px}.logo{width:54px;height:54px;border-radius:16px;background:var(--y);display:grid;place-items:center;font-size:30px;box-shadow:0 5px 15px #0002}.brand h1{font-size:22px;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:13px}
+    main{max-width:760px;margin:auto;padding:18px 16px 90px}.hero{background:linear-gradient(135deg,#0b57d0,#123b8f);color:#fff;border-radius:24px;padding:22px;box-shadow:0 12px 28px #0b57d033}.hero h2{margin:0 0 8px;font-size:26px}.hero p{margin:0;opacity:.92;line-height:1.4}.stars{letter-spacing:4px;color:#fff;margin-top:10px}
+    h3{margin:24px 2px 12px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.service{border:0;background:var(--card);border-radius:20px;padding:18px 12px;text-align:left;box-shadow:0 5px 16px #00000010;min-height:112px}.service:active{transform:scale(.98)}.ico{font-size:30px}.service b{display:block;margin-top:8px;font-size:15px}.service small{color:var(--muted)}
+    .panel{background:#fff;border-radius:22px;padding:18px;margin-top:16px;box-shadow:0 5px 16px #00000010}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}label{display:block;font-size:13px;font-weight:700;margin:12px 0 6px}input,select,textarea{width:100%;border:1px solid #d8dde6;border-radius:13px;padding:13px;font-size:16px;background:#fff}textarea{min-height:88px;resize:vertical}.btn{width:100%;border:0;border-radius:14px;padding:14px 16px;font-weight:800;font-size:16px;margin-top:14px}.primary{background:var(--r);color:#fff}.secondary{background:var(--b);color:#fff}.ghost{background:#eef3ff;color:var(--b)}
+    .status{display:none;margin-top:12px;padding:12px;border-radius:12px;background:#eef7ee}.auth{display:flex;gap:8px;align-items:center;margin-top:14px}.auth span{font-size:13px;color:var(--muted);flex:1}.hidden{display:none!important}.badge{display:inline-block;background:#fff3bf;color:#6a5100;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:700;margin-top:10px}.footer{text-align:center;color:#8a9099;font-size:12px;margin-top:26px}
+    @media(min-width:620px){.grid{grid-template-columns:repeat(4,1fr)}}
+  </style>
+</head>
+<body>
+<div class="flag"></div>
+<header><div class="brand"><div class="logo">🐱🔧</div><div><h1>Vial a la Mano</h1><p>Asistencia vial para EE. UU. y Venezuela</p></div></div></header>
+<main>
+  <section class="hero"><h2>¿Problemas en la vía?</h2><p>Solicita ayuda para tu carro, SUV, pickup o moto. Encuentra asistencia cercana de forma rápida.</p><div class="stars">★ ★ ★ ★ ★ ★ ★</div><span class="badge">US 🇺🇸 · VE 🇻🇪</span></section>
+
+  <h3>¿Qué servicio necesitas?</h3>
+  <div class="grid" id="services">
+    <button class="service" data-code="TIRE_REPAIR"><span class="ico">🛞</span><b>Reparar caucho</b><small>Pinchazo / espichado</small></button>
+    <button class="service" data-code="TIRE_REPLACE"><span class="ico">🔧</span><b>Cambio de caucho</b><small>Instalación / reemplazo</small></button>
+    <button class="service" data-code="TIRE_VALVE"><span class="ico">💨</span><b>Válvula / fuga</b><small>Pérdida de aire</small></button>
+    <button class="service" data-code="RIM_DAMAGE"><span class="ico">⚙️</span><b>Rin dañado</b><small>Revisión del rin</small></button>
+    <button class="service" data-code="MOTO_TUBI"><span class="ico">🏍️</span><b>Caucho de moto</b><small>Cámara / reparación</small></button>
+    <button class="service" data-code="TOW"><span class="ico">🚚</span><b>Grúa</b><small>Remolque</small></button>
+    <button class="service" data-code="BATTERY"><span class="ico">🔋</span><b>Batería</b><small>Pasar corriente</small></button>
+    <button class="service" data-code="LIGHT_MECHANIC"><span class="ico">🧰</span><b>Mecánica ligera</b><small>Fallas menores</small></button>
+  </div>
+
+  <section class="panel" id="requestPanel">
+    <h3 style="margin-top:0">Solicitar asistencia</h3>
+    <label>Servicio</label><select id="service"><option value="">Selecciona un servicio</option></select>
+    <div class="row"><div><label>Vehículo</label><select id="vehicle"><option>CARRO</option><option>SUV</option><option>PICKUP</option><option>MOTO</option></select></div><div><label>País</label><select id="country"><option value="US">Estados Unidos</option><option value="VE">Venezuela</option></select></div></div>
+    <div class="row"><div><label>Medida del caucho</label><input id="tire" placeholder="Ej. 225/45 R17"></div><div><label>Rin</label><input id="rim" placeholder="Ej. 17"></div></div>
+    <label>Ubicación o referencia</label><input id="location" placeholder="Dirección, ciudad o referencia">
+    <label>Describe el problema</label><textarea id="notes" placeholder="Ej. Caucho delantero derecho espichado..."></textarea>
+    <button class="btn primary" id="send">🚨 Solicitar ayuda ahora</button>
+    <div class="status" id="status"></div>
+  </section>
+
+  <section class="panel">
+    <h3 style="margin-top:0">Mi cuenta</h3>
+    <div id="loggedOut">
+      <label>Correo</label><input id="email" type="email" autocomplete="email" placeholder="correo@ejemplo.com">
+      <label>Contraseña</label><input id="password" type="password" autocomplete="current-password" placeholder="••••••••">
+      <button class="btn secondary" id="login">Entrar</button><button class="btn ghost" id="signup">Crear cuenta</button>
+    </div>
+    <div id="loggedIn" class="hidden"><p id="who"></p><button class="btn ghost" id="logout">Cerrar sesión</button></div>
+  </section>
+  <div class="footer">Vial a la Mano · MVP 2026</div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL='https://jylqxuxcimgisoruyzpd.supabase.co';
+const SUPABASE_KEY='sb_publishable_HjSfJhkhBf6z71LYZVR2Gg_YT3lyNPJ';
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const fallback=[['TIRE_REPAIR','Reparación de caucho'],['TIRE_REPLACE','Cambio / instalación de caucho'],['TIRE_VALVE','Válvula / fuga'],['RIM_DAMAGE','Rin dañado'],['MOTO_TUBI','Cámara de moto'],['TOW','Grúa / remolque'],['BATTERY','Batería / pasar corriente'],['LIGHT_MECHANIC','Mecánica ligera']];
+const service=document.getElementById('service');
+function fillServices(rows=fallback){service.innerHTML='<option value="">Selecciona un servicio</option>'+rows.map(x=>`<option value="${x[0]}">${x[1]}</option>`).join('')}
+fillServices();
+(async()=>{try{const {data}=await db.from('services').select('code,name_es').eq('active',true).order('name_es');if(data?.length)fillServices(data.map(x=>[x.code,x.name_es]));}catch(e){}})();
+document.querySelectorAll('.service').forEach(b=>b.onclick=()=>{service.value=b.dataset.code;document.getElementById('requestPanel').scrollIntoView({behavior:'smooth'});});
+function msg(t,ok=true){const s=document.getElementById('status');s.style.display='block';s.style.background=ok?'#eef7ee':'#fff0f0';s.textContent=t}
+async function refresh(){const {data:{user}}=await db.auth.getUser();document.getElementById('loggedOut').classList.toggle('hidden',!!user);document.getElementById('loggedIn').classList.toggle('hidden',!user);if(user)document.getElementById('who').textContent='Sesión iniciada: '+user.email}
+refresh();
+document.getElementById('login').onclick=async()=>{const email=document.getElementById('email').value.trim(),password=document.getElementById('password').value;const {error}=await db.auth.signInWithPassword({email,password});if(error)return alert(error.message);refresh()};
+document.getElementById('signup').onclick=async()=>{const email=document.getElementById('email').value.trim(),password=document.getElementById('password').value;const {error}=await db.auth.signUp({email,password});if(error)return alert(error.message);alert('Cuenta creada. Si Supabase pide confirmación, revisa tu correo.');refresh()};
+document.getElementById('logout').onclick=async()=>{await db.auth.signOut();refresh()};
+document.getElementById('send').onclick=async()=>{
+ const {data:{user}}=await db.auth.getUser();if(!user){msg('Primero inicia sesión o crea una cuenta.',false);document.getElementById('loggedOut').scrollIntoView({behavior:'smooth'});return}
+ if(!service.value){msg('Selecciona el servicio que necesitas.',false);return}
+ const payload={client_id:user.id,service_code:service.value,vehicle_type:document.getElementById('vehicle').value,country_code:document.getElementById('country').value,tire_size:document.getElementById('tire').value||null,rim_size:document.getElementById('rim').value||null,notes:[document.getElementById('location').value,document.getElementById('notes').value].filter(Boolean).join(' · ')||null};
+ let {error}=await db.from('service_requests').insert(payload);
+ if(error){msg('La app está conectada, pero falta ajustar el formulario a la tabla service_requests: '+error.message,false);return}
+ msg('✅ Solicitud enviada. Ya quedó registrada en Vial a la Mano.')
+};
+</script>
+</body></html>
